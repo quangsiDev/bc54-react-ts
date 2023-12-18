@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { I_PropsForm } from "./interface";
 
-export default function FormTodo() {
+export default function FormTodo(props: I_PropsForm) {
   const [title, setTitle] = useState<string>("Làm dự án cuối khoá");
   const handleChangeForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
