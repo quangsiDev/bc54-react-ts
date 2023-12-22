@@ -9,6 +9,7 @@ export default function ListTodo(props: I_PropsList) {
           <th>Id</th>
           <th>Name</th>
           <th>Is Completed</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -18,7 +19,23 @@ export default function ListTodo(props: I_PropsList) {
               <td>{item.id}</td>
               <td>{item.title}</td>
               <td>
-                <input type="checkbox" checked={item.isCompleted} />
+                <input
+                  onClick={() => {
+                    props.handleToggleChecked(item.id);
+                  }}
+                  type="checkbox"
+                  checked={item.isCompleted}
+                />
+              </td>
+              <td>
+                <button
+                  onClick={() => {
+                    props.handleDelete(item.id);
+                  }}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           );

@@ -13,10 +13,25 @@ export default function Todos() {
     let newTodos = [...todos, newTodo];
     setTodos(newTodos);
   };
+  const handleDelete = (id: number) => {
+    let newTodos = todos.filter((item) => item.id != id);
+    setTodos(newTodos);
+  };
+  const handleToggleChecked = (id: number) => {
+    // tìm item được user click
+    let index = todos.findIndex((item) => item.id == id);
+    let cloneTodos = [...todos];
+    cloneTodos[index].isCompleted = !cloneTodos[index].isCompleted;
+    setTodos(cloneTodos);
+  };
   return (
     <div>
       <FormTodo handleCreate={handleAddTodo} />
-      <ListTodo todos={todos} />
+      <ListTodo
+        handleToggleChecked={handleToggleChecked}
+        handleDelete={handleDelete}
+        todos={todos}
+      />
     </div>
   );
 }
